@@ -1,0 +1,43 @@
+@keyframes pop-in {
+    0% {
+        opacity: 0;
+        transform: translateY(-25%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.flash {
+    margin: 0;
+    padding: 1em;
+    display: flex;
+
+    justify-content: left;
+    align-items: center;
+    gap: 0.75em;
+
+    color: white;
+
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.75em;
+    font-weight: 900;
+    
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+
+    animation-name: pop-in;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0, .8, 0, .8);
+}
+
+.alert {
+    background-color: #ff5050;
+    border-bottom-color: #ff3535;
+}
+
+.notice {
+    background-color: #509cff;
+    border-bottom-color: #1d6fdb;
+}
