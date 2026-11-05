@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy ]
+  before_action :authorize, except: %i[ new create ]
 
   # GET /users or /users.json
   def index
@@ -25,11 +26,13 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
+        session[:user_id] = @user.id
+
+        format.html do
+          redirect_to root_url, notice: "Welcome To Eventu Bro."
+        end
       else
-        format.html { render :new, status: :unprocessable_content }
-        format.json { render json: @user.errors, status: :unprocessable_content }
+        format.html { render "new" }
       end
     end
   end
@@ -65,6 +68,6 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.expect(user: [ :name ])
+      params.expect(user: [ :name, :email, :password, :password_confirmation ])
     end
 end

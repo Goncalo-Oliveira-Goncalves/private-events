@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_04_221508) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_05_075450) do
   create_table "events", force: :cascade do |t|
     t.string "name"
     t.string "location"
@@ -30,6 +30,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_04_221508) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "email"
   end
 
   add_foreign_key "events", "users", column: "host_id"
