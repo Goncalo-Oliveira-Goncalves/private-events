@@ -1,0 +1,42 @@
+label {
+    font-family: var(--main-font);
+}
+label::after {
+    content: " *";
+    color: red;
+}
+
+input {
+    font-family: var(--main-font);
+
+    padding: 5px;
+
+    border-radius: 0px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #d4d4d4;
+}
+
+input:not(.submit-button) {
+    box-shadow: inset 2.5px 2.5px #d4d4d4;
+    padding-top: 7.5px;
+    padding-left: 10px;
+
+
+    margin-bottom: 20px;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 10px;
+
+    margin-top: 1em;
+
+    background-color: #3e85e1;
+    border: 2px solid #7fb9ff;
+    color: white;
+
+    font-weight: 900;
+
+    box-shadow: 2.5px 2.5px #193f6f;
+}
