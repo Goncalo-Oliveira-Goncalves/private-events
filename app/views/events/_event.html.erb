@@ -1,17 +1,31 @@
-<div id="<%= dom_id event %>">
-  <div>
-    <strong>Name:</strong>
+<div id="<%= dom_id event %>" class="event-listing">
+  <div class="event name">
     <%= event.name %>
   </div>
 
-  <div>
-    <strong>Location:</strong>
-    <%= event.location %>
+  <div class="event metadata">
+    <div class="data-block location">
+      <span class="material-symbols-outlined">location_on</span>
+      <span><%= event.location %></span>
+    </div>
+
+    <div class="data-block date">
+      <span class="material-symbols-outlined">schedule</span>
+      <span><%= event.date %></span>
+    </div>
   </div>
 
-  <div>
-    <strong>Date:</strong>
-    <%= event.date %>
-  </div>
-
+  <% if logged_in? %>
+    <% if event.host_id == session[:user_id] %>
+      <%= link_to "Edit Event", edit_event_path(event), class: "event edit-button" %>
+    <% else %>
+      <% if event.guest.find(user_id: session[:user_id]) %>
+        <div>
+          <span class="event disabled-button">Joined!</span>
+        </div>
+      <% else %>
+        <%= button_to "Join", join_event_path(event), class: "event join-button highlight" %>
+      <% end %>
+    <% end %>
+  <% end %>
 </div>

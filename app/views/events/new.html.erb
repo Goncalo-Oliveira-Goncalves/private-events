@@ -1,11 +1,36 @@
 <% content_for :title, "New event" %>
 
-<h1>New event</h1>
+<div class="event main-container">
+  <%= form_with model: @event, class: "event form" do |form| %>
+    <% if @event.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(@event.errors.count, "error") %> Whoops, something's wrong with your event...:</h2>
 
-<%= render "form", event: @event %>
+        <ul>
+          <% @event.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-<br>
+    <div>
+      <%= form.label :name, style: "display: block" %>
+      <%= form.text_field :name %>
+    </div>
 
-<div>
-  <%= link_to "Back to events", events_path %>
+    <div>
+      <%= form.label :location, style: "display: block" %>
+      <%= form.text_field :location %>
+    </div>
+
+    <div>
+      <%= form.label :date, style: "display: block" %>
+      <%= form.date_field :date %>
+    </div>
+
+    <div>
+      <%= form.submit "Create Event", class: "submit-button" %>
+    </div>
+  <% end %>
 </div>

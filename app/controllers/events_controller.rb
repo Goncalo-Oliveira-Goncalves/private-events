@@ -26,8 +26,8 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: "Event was successfully created." }
-        format.json { render :show, status: :created, location: @event }
+        format.html { redirect_to root_path, notice: "Event was successfully created." }
+        format.json { render :no_content }
       else
         format.html { render :new, status: :unprocessable_content }
         format.json { render json: @event.errors, status: :unprocessable_content }
@@ -39,8 +39,22 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: "Event was successfully updated.", status: :see_other }
-        format.json { render :show, status: :ok, location: @event }
+        format.html { redirect_to root_path, notice: "Event was successfully updated.", status: :see_other }
+        format.json { render :no_content }
+      else
+        format.html { render :edit, status: :unprocessable_content }
+        format.json { render json: @event.errors, status: :unprocessable_content }
+      end
+    end
+  end
+
+  # PATCH/PUT /events/1 or /events/1.json
+  def join
+    guest = @event.guests.build(user_id: session[:user_id])
+    respond_to do |format|
+      if guest.save
+        format.html { redirect_to @event, notice: "You have joined the #{@event.name} event!", status: :see_other }
+        format.json { head :no_content }
       else
         format.html { render :edit, status: :unprocessable_content }
         format.json { render json: @event.errors, status: :unprocessable_content }
@@ -66,6 +80,7 @@ class EventsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def event_params
-      params.expect(event: [ :name, :location, :date ])
+      params[:event][:host_id] = session[:user_id]
+      params.expect(event: [ :name, :location, :date, :host_id ])
     end
 end

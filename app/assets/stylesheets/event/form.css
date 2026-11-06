@@ -1,0 +1,25 @@
+.event.main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    flex-grow: 1;
+    width: 100%;
+
+    background: 
+        url("/arrow-pattern.svg"),
+        linear-gradient(#3e85e1, #193f6f);
+    background-size: 20px 20px, 100% 100%;
+    background-position: 1em 1em, 0px 0px;
+}
+
+.event.form {
+    padding: 1em;
+
+    background: white;
+
+    border-radius: 5px;
+
+    box-shadow: 5px 5px #d4d4d4;
+}

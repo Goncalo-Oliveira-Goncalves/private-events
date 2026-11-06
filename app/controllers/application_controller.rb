@@ -18,6 +18,6 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize
-    redirect_to login_url, alert: "Accessing this page requires Sign Up" if current_user.nil?
+    redirect_to login_url, alert: "Accessing this page requires an account" if current_user.nil?
   end
 end

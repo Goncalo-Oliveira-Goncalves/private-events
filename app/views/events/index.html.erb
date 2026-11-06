@@ -1,14 +1,13 @@
 <% content_for :title, "Events" %>
 
-<h1>Events</h1>
+<div class="event-index">
+  <h1>Lastest Events</h1>
 
-<div id="events">
-  <% @events.each do |event| %>
-    <%= render event %>
-    <p>
-      <%= link_to "Show this event", event %>
-    </p>
-  <% end %>
+  <div id="events">
+    <% @events.each do |event| %>
+      <%= render event %>
+    <% end %>
+  </div>
+
+  <%= link_to "Host An Event", new_event_path, class: "host-button" %>
 </div>
-
-<%= link_to "New event", new_event_path %>

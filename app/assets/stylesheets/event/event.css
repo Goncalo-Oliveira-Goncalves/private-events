@@ -1,0 +1,58 @@
+.event-listing {
+    display: flex;
+    flex-direction: column;
+    
+    font-family: var(--main-font);
+
+    justify-content: left;
+    align-items: start;
+
+    padding: 2em;
+
+    background: #eee;
+
+    gap: 1em;
+}
+
+.event.name {
+    font-size: 1.5em;
+
+    font-weight: 900;
+}
+
+.event.metadata {
+    display: flex;
+    gap: 1em;
+
+    align-items: center;
+}
+
+.event > .data-block {
+    display: flex;
+    align-items: center;
+
+    gap: 0.25em;
+}
+
+.event > .data-block > span {
+    font-size: 1em;
+    color: #3e85e1;
+}
+
+.event.edit-button {
+    display: block;
+    
+    padding: 0.5em;
+
+    text-decoration: none;
+
+    border-radius: 5px;
+
+    color: white;
+
+    background-color: #3d3d3d;
+    border: 2px solid #838383;
+    color: #838383;
+
+    box-shadow: 2.5px 2.5px #3d3d3d;
+}
